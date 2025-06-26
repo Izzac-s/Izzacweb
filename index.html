@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Ảnh Của Tôi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Baloo+Bhaijaan+2:wght@400..800&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Cherry+Bomb+One&family=Danfo&family=Playwrite+HU:wght@100..400&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@300;400;500;700&family=Teko:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      /* Modern Tech Color Palette - A.I. Aqua Theme */
+      --color-ai-aqua: #00d4ff;
+      --color-deep-aqua: #0099cc;
+      --color-tech-teal: #03A791;
+      --color-cyber-mint: #81E7AF;
+      --color-electric-blue: #0066ff;
+      --color-neon-cyan: #00ffff;
+      
+      /* Dark mode colors */
+      --color-dark-bg: #0a0a0a;
+      --color-dark-surface: #1a1a1a;
+      --color-dark-text: #ffffff;
+      --color-dark-secondary: #b0b0b0;
+
+      /* Dynamic gradient colors */
+      --gradient-primary: linear-gradient(135deg, var(--color-ai-aqua), var(--color-tech-teal), var(--color-cyber-mint));
+      --gradient-animated: linear-gradient(45deg, #00d4ff, #03A791, #81E7AF, #0066ff);
+      
+      /* Applying Modern Palette */
+      --bg-color: #f8fafc;
+      --header-bg-overlay: var(--gradient-animated);
+      --header-text-color: #ffffff;
+      --header-line-color: rgba(255, 255, 255, 0.8);
+      --button-bg: var(--color-ai-aqua);
+      --button-border: rgba(255, 255, 255, 0.9);
+      --button-text-color: #ffffff;
+      --text-color: #2D3748;
+      --subtitle-color: #4A5568;
+      --title-color: var(--color-tech-teal);
+      --icon-color: var(--color-ai-aqua);
+      --accent-color: var(--color-cyber-mint);
+      --accent-text-color: #1A202C;
+      --gallery-bg: #ffffff;
+      --footer-bg: var(--color-tech-teal);
+      --footer-text-color: #ffffff;
+      
+      /* Glassmorphism variables */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+      
+      /* Modal colors with glassmorphism */
+      --modal-backdrop-bg: rgba(0, 0, 0, 0.4);
+      --modal-content-bg: var(--glass-bg);
+      --modal-close-btn-bg: var(--color-ai-aqua);
+      --modal-close-btn-hover-bg: var(--color-deep-aqua);
+      --modal-close-btn-text: #ffffff;
+      --copy-button-bg: var(--color-cyber-mint);
+      --copy-button-text: #1A202C;
+      --lightbox-nav-bg: rgba(0, 212, 255, 0.3);
+      --lightbox-nav-hover-bg: rgba(0, 212, 255, 0.5);
+      --lightbox-nav-color: #fff;
+      --lightbox-caption-bg: rgba(0, 0, 0, 0.8);
+      --lightbox-caption-text: #fff;
+
+      /* Font Families */
+      --font-body: 'Poppins', sans-serif;
+      --font-header-main: 'ADLaM Display', cursive;
+      --font-header-sub: 'Montserrat', sans-serif;
+      --font-modal: 'Work Sans', sans-serif;
+
+      /* Animation Speed */
+      --modal-transition-speed: 0.4s;
+      --gallery-reveal-speed: 0.8s;
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    /* Dark mode styles */
+    [data-theme="dark"] {
+      --bg-color: var(--color-dark-bg);
+      --gallery-bg: var(--color-dark-surface);
+      --text-color: var(--color-dark-text);
+      --subtitle-color: var(--color-dark-secondary);
+      --modal-content-bg: rgba(26, 26, 26, 0.9);
+      --glass-bg: rgba(26, 26, 26, 0.8);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { overflow-x: hidden; }
+
+    body {
+      font-family: var(--font-body); 
+      background: var(--bg-color);
+      color: var(--text-color); 
+      line-height: 1.6; 
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    /* Custom cursor */
+    body { cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMyIgZmlsbD0iIzAwZDRmZiIvPgo8L3N2Zz4K'), auto; }
+
+    *:focus-visible {
+      outline: 3px solid var(--color-ai-aqua);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.3);
+    }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 10px 15px;
+      color: var(--header-text-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Header with animated gradient */
+    .header-base { 
+      height: 100vh; 
+      position: relative; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      padding: 2rem; 
+      color: var(--header-text-color); 
+      background: var(--header-bg-overlay);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite, fadeIn 1s ease-out;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .header-content-top, .header-content-bottom { 
+      position: relative; 
+      z-index: 3; 
+      width: 100%; 
+    }
+
+    .header-content-top { 
+      animation: slideFadeDown 1s var(--ease-out-cubic) 0.4s backwards; 
+    }
+
+    .header-content-bottom { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: flex-end; 
+      animation: slideFadeUp 1s var(--ease-out-cubic) 0.4s backwards; 
+      padding-bottom: 0.5rem; 
+    }
+
+    .header-date { 
+      font-family: var(--font-header-sub); 
+      font-size: 0.9rem; 
+      font-weight: 300; 
+      letter-spacing: 2px; 
+      text-transform: uppercase; 
+      margin-bottom: 1.5rem; 
+      display: block; 
+      animation: fadeIn 0.8s ease-out 0.8s backwards; 
+      min-height: 1.2em; 
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      background: linear-gradient(45deg, #ffffff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-main-text { 
+      font-family: var(--font-header-main); 
+      font-size: clamp(3.5rem, 12vw, 7rem); 
+      line-height: 1.1; 
+      margin-bottom: 1rem; 
+      text-shadow: 3px 3px 12px rgba(0,0,0,0.6); 
+      animation: slideFadeRight 1.2s var(--ease-out-expo) 0.6s backwards;
+      background: linear-gradient(45deg, #ffffff, #00d4ff, #81E7AF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .header-sub-text { 
+      font-family: var(--font-header-sub); 
+      font-size: 1.1rem; 
+      font-weight: 500; 
+      letter-spacing: 1px; 
+      animation: slideFadeRight 1.2s var(--ease-out-expo) 0.7s backwards; 
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .header-button { 
+      font-family: var(--font-header-sub); 
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      color: var(--button-text-color); 
+      border: 2px solid var(--glass-border); 
+      padding: 1rem 2rem; 
+      text-decoration: none; 
+      font-size: 0.9rem; 
+      font-weight: 600; 
+      letter-spacing: 1px; 
+      text-transform: uppercase; 
+      border-radius: 50px; 
+      cursor: pointer; 
+      animation: scaleUpFadeIn 0.8s var(--ease-out-cubic) 0.9s backwards; 
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-button:hover { 
+      background: rgba(0, 212, 255, 0.2);
+      transform: translateY(-3px) scale(1.05); 
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+      border-color: var(--color-ai-aqua);
+    }
+
+    .header-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .header-button:hover::before {
+      left: 100%;
+    }
+
+    .header-line { 
+      position: absolute; 
+      left: 2rem; 
+      right: 2rem; 
+      height: 2px; 
+      background: linear-gradient(90deg, transparent, var(--color-ai-aqua), transparent); 
+      z-index: 2; 
+      animation: expandWidth 1.2s var(--ease-out-cubic) 0.5s backwards;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    .header-line-top { top: 5rem; }
+    .header-line-bottom { bottom: 6.5rem; }
+
+    #header-desktop { 
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('izzac2z123.jpg'); 
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      display: flex; 
+    }
+
+    #header-mobile { 
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('minhquang.png'); 
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      display: none; 
+      padding: 1rem; 
+    }
+
+    /* Main content with improved styling */
+    main { 
+      opacity: 0; 
+      visibility: hidden; 
+      transform: translateY(50px); 
+      transition: all var(--gallery-reveal-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+      background: var(--gallery-bg); 
+      padding-top: 1px;
+      position: relative;
+    }
+
+    main.revealed { 
+      opacity: 1; 
+      visibility: visible; 
+      transform: translateY(0); 
+    }
+
+    /* Gallery title with glassmorphism */
+    .gallery-title-section {
+      margin: 3rem 0 2rem 0;
+      padding: 2rem 2rem;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap;
+      position: relative; 
+      z-index: 10; 
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+    }
+
+    .gallery-title-text h1 { 
+      font-family: var(--font-body); 
+      font-size: 2.5rem; 
+      font-weight: 700; 
+      margin-bottom: 0.3rem; 
+      background: linear-gradient(45deg, var(--color-ai-aqua), var(--color-tech-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .gallery-title-text p { 
+      font-family: var(--font-body); 
+      font-size: 1rem; 
+      color: var(--subtitle-color); 
+      text-transform: uppercase; 
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    .gallery-title-icons { 
+      display: flex; 
+      gap: 20px; 
+    }
+
+    .gallery-title-icons i { 
+      font-size: 1.5rem; 
+      color: var(--icon-color); 
+      cursor: pointer; 
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding: 10px;
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.1);
+    }
+
+    .gallery-title-icons i:hover { 
+      color: var(--color-neon-cyan);
+      background: rgba(0, 212, 255, 0.2);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    /* Enhanced gallery styles */
+    .gallery-wrapper { 
+      position: relative; 
+      padding-bottom: 3rem; 
+    }
+
+    .gallery {
+      position: relative; 
+      z-index: 0; 
+      overflow: visible; 
+      column-count: 3;
+      column-gap: 20px;
+      padding: 0 2rem;
+      margin: 0;
+      background-color: transparent;
+    }
+
+    .gallery-item { 
+      break-inside: avoid; 
+      margin-bottom: 20px; 
+      position: relative; 
+      overflow: hidden; 
+      border-radius: 16px; 
+      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1); 
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      cursor: pointer;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+    }
+
+    .gallery-item:hover { 
+      transform: translateY(-8px) rotateY(2deg) scale(1.02); 
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.25);
+      border-color: var(--color-ai-aqua);
+    }
+
+    .gallery-item img { 
+      width: 100%; 
+      height: auto; 
+      display: block; 
+      object-fit: cover; 
+      border-radius: 15px; 
+      transition: all 0.4s ease; 
+      -webkit-user-drag: none; 
+      user-select: none;
+    }
+
+    .gallery-item:hover img { 
+      transform: scale(1.05); 
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    /* Lightbox with enhanced glassmorphism */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background-color: var(--modal-backdrop-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--modal-transition-speed) ease;
+      padding: 1rem;
+      cursor: pointer; 
+    }
+
+    #lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .lightbox-content {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      border-radius: 24px;
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      width: auto;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+      transform: scale(0.9) translateY(30px);
+      transition: all var(--modal-transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
+      overflow: hidden;
+    }
+
+    #lightbox.active .lightbox-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .lightbox-image-container {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    #lightbox-img {
+      display: block;
+      max-width: calc(95vw - 80px);
+      max-height: calc(95vh - 140px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    #lightbox-caption {
+      font-family: var(--font-modal);
+      font-size: 0.9rem;
+      color: var(--header-text-color);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+      width: 100%;
+      border-radius: 12px;
+      margin-top: auto;
+      border: 1px solid var(--glass-border);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      color: var(--lightbox-nav-color);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(0, 212, 255, 0.3);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+    }
+
+    .lightbox-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    #lightbox-prev { left: 15px; }
+    #lightbox-next { right: 15px; }
+    
+    #lightbox-close-btn {
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      background: var(--color-ai-aqua);
+      color: var(--modal-close-btn-text);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: var(--font-body);
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    #lightbox-close-btn:hover {
+      background: var(--color-deep-aqua);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Share modal with glassmorphism */
+    #share-modal {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      background-color: var(--modal-backdrop-bg); 
+      backdrop-filter: blur(15px); 
+      -webkit-backdrop-filter: blur(15px);
+      display: none; 
+      opacity: 0; 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 1001;
+      transition: all var(--modal-transition-speed) ease;
+      padding: 1rem;
+    }
+
+    #share-modal.active { 
+      display: flex; 
+      opacity: 1; 
+    }
+    
+    .share-modal-content { 
+      font-family: var(--font-modal); 
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      padding: 2rem 2.5rem; 
+      border-radius: 20px; 
+      position: relative; 
+      min-width: 350px; 
+      max-width: 500px; 
+      width: 90%; 
+      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2); 
+      transform: scale(0.9) translateY(30px);
+      transition: all var(--modal-transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: left; 
+    }
+
+    #share-modal.active .share-modal-content { 
+      transform: scale(1) translateY(0);
+    }
+
+    .share-modal-content h3 { 
+      font-family: var(--font-modal); 
+      margin-top: 0; 
+      margin-bottom: 1rem; 
+      font-weight: 700; 
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--color-ai-aqua), var(--color-tech-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .share-modal-content p { 
+      font-family: var(--font-modal); 
+      margin-bottom: 1rem; 
+      font-size: 1rem; 
+      color: var(--subtitle-color); 
+    }
+    
+    #share-link-input { 
+      font-family: var(--font-modal); 
+      width: 100%; 
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem; 
+      border: 2px solid var(--glass-border); 
+      border-radius: 12px; 
+      font-size: 0.9rem; 
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      color: var(--text-color); 
+      cursor: text; 
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    #share-link-input:focus {
+      border-color: var(--color-ai-aqua);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+    }
+
+    #copy-link-btn { 
+      font-family: var(--font-modal); 
+      background: var(--color-cyber-mint); 
+      color: var(--copy-button-text); 
+      border: none; 
+      padding: 0.8rem 1.5rem; 
+      border-radius: 50px; 
+      cursor: pointer; 
+      font-size: 0.9rem; 
+      font-weight: 600; 
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      display: inline-block; 
+      margin-right: 10px;
+      box-shadow: 0 4px 15px rgba(129, 231, 175, 0.3);
+    }
+
+    #copy-link-btn:hover { 
+      background: #6bdd9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(129, 231, 175, 0.4);
+    }
+
+    #copy-link-btn:active { 
+      transform: translateY(-1px) scale(0.98); 
+    }
+
+    #close-modal-btn { 
+      position: absolute; 
+      top: 15px; 
+      right: 20px; 
+      background: none; 
+      border: none; 
+      font-size: 2rem; 
+      color: var(--subtitle-color); 
+      cursor: pointer; 
+      line-height: 1; 
+      padding: 0; 
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #close-modal-btn:hover { 
+      color: var(--color-ai-aqua);
+      background: rgba(0, 212, 255, 0.1);
+      transform: scale(1.1);
+    }
+
+    .modal-buttons { 
+      text-align: right; 
+      margin-top: 1rem; 
+    }
+
+    /* Back to top button */
+    #back-to-top { 
+      position: fixed; 
+      bottom: 30px; 
+      right: 30px; 
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      color: var(--color-ai-aqua); 
+      border-radius: 50px; 
+      cursor: pointer; 
+      display: none; 
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      opacity: 0; 
+      z-index: 999; 
+      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2); 
+      font-weight: 600;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #back-to-top.show { 
+      opacity: 1; 
+      display: flex;
+    }
+
+    #back-to-top:hover { 
+      background: rgba(0, 212, 255, 0.2);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    /* Footer with gradient */
+    footer { 
+      background: linear-gradient(135deg, var(--color-tech-teal), var(--color-deep-aqua)); 
+      color: var(--footer-text-color); 
+      text-align: center; 
+      padding: 3rem 1rem; 
+      font-size: 0.9rem; 
+      margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    }
+
+    .contact-info { 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 1rem 3rem; 
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info span { 
+      display: inline-flex; 
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info span:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-info a { 
+      color: var(--footer-text-color); 
+      text-decoration: none; 
+      transition: all 0.3s ease; 
+    }
+
+    .contact-info a:hover { 
+      color: var(--color-neon-cyan);
+      text-decoration: underline; 
+    }
+
+    .contact-info i { 
+      margin-right: 0.8em; 
+      font-size: 1.2em; 
+    }
+
+    /* Music notification */
+    #music-notification { 
+      position: fixed; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      color: var(--header-text-color); 
+      padding: 2rem 2.5rem; 
+      border-radius: 20px; 
+      font-family: var(--font-body); 
+      z-index: 100; 
+      animation: fadeInPopup 1s ease-in-out forwards; 
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+      max-width: 90vw;
+    }
+
+    #music-notification.hide { 
+      animation: fadeOutPopup 1s ease-in-out forwards; 
+    }
+
+    /* Enhanced animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes slideFadeDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideFadeUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideFadeRight { from { transform: translateX(-80px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes scaleUpFadeIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes expandWidth { from { width: 0; left: 50%; right: 50%; opacity: 0;} to { width: calc(100% - 4rem); left: 2rem; right: 2rem; opacity: 1;} }
+    @keyframes fadeInPopup { from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+    @keyframes fadeOutPopup { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } }
+    @keyframes expandWidthMobile { from { width: 0; left: 50%; right: 50%; opacity: 0;} to { width: calc(100% - 2rem); left: 1rem; right: 1rem; opacity: 1;} }
+
+    /* Floating particles animation */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--color-ai-aqua);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .gallery { column-count: 2; }
+      .header-main-text { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .gallery-title-section { margin: 2rem 1rem; padding: 1.5rem; }
+      .gallery-title-text h1 { font-size: 2rem; }
+      .theme-toggle { top: 15px; right: 15px; padding: 8px 12px; }
+      
+      #lightbox-img {
+        max-width: calc(95vw - 60px);
+        max-height: calc(95vh - 120px);
+      }
+      .lightbox-nav { width: 45px; height: 45px; font-size: 1.1rem;}
+      #lightbox-prev { left: 10px; }
+      #lightbox-next { right: 10px; }
+      .lightbox-content { padding: 1rem; }
+      
+      #header-desktop { display: none; }
+      #header-mobile { display: flex; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery { column-count: 1; padding: 0 1rem; }
+      .gallery-title-section { margin: 1rem 0.5rem; padding: 1rem; }
+      .contact-info { gap: 1rem 2rem; }
+      .share-modal-content { padding: 1.5rem; min-width: 300px; }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Dark mode toggle -->
+  <button class="theme-toggle" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+    <span>Dark</span>
+  </button>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <div id="music-notification">
+    🎵 Click vào bất kỳ khoảng trống nào để phát nhạc<br>
+    🎵 Click anywhere to play music
+  </div>
+
+  <header id="header-desktop" class="header-base">
+    <div class="header-line header-line-top"></div>
+    <div class="header-content-top"> 
+      <span class="header-date"></span> 
+      <div class="header-main-text">IZZAC</div> 
+    </div>
+    <div class="header-content-bottom"> 
+      <div class="header-sub-text">MINH QUANG</div> 
+      <a href="#gallery-start" class="header-button">View Gallery</a> 
+    </div>
+    <div class="header-line header-line-bottom"></div>
+  </header>
+
+  <header id="header-mobile" class="header-base">
+    <div class="header-line header-line-top"></div>
+    <div class="header-content-top"> 
+      <span class="header-date"></span> 
+      <div class="header-main-text">IZZAC</div> 
+    </div>
+    <div class="header-content-bottom"> 
+      <div class="header-sub-text">MINH QUANG</div> 
+      <a href="#gallery-start" class="header-button">View Gallery</a> 
+    </div>
+    <div class="header-line header-line-bottom"></div>
+  </header>
+
+  <main>
+    <span id="gallery-start" style="position: relative; top: -80px; display: block;"></span>
+    <div class="gallery-title-section">
+        <div class="gallery-title-text"> 
+          <h1>IZZAC</h1> 
+          <p>MINH QUANG GALLERY</p> 
+        </div>
+        <div class="gallery-title-icons">
+            <i id="share-icon" class="fa-solid fa-share-nodes" title="Share"></i> 
+        </div>
+    </div>
+
+    <div class="gallery-wrapper">
+      <div class="gallery">
+        <div class="gallery-item"><img src="kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.png" alt="Ảnh bầu trời xanh tuyệt đẹp với mây trắng" loading="lazy" data-aos="fade-up"></div>
+        <div class="gallery-item"><img src="bhj1x32x12hbj31hbvhb21bhv3123.png" alt="Hoàng hôn rực rỡ trên biển" loading="lazy" data-aos="zoom-in"></div>
+        <div class="gallery-item"><img src="3.jpg" alt="Bầu trời đêm đầy sao lấp lánh" loading="lazy" data-aos="flip-up"></div>
+        <div class="gallery-item"><img src="4.jpg" alt="Phong cảnh làng quê Việt Nam yên bình" loading="lazy" data-aos="fade-up-right"></div>
+        <div class="gallery-item"><img src="5.jpg" alt="Bãi biển Nha Trang với cát trắng nắng vàng" loading="lazy" data-aos="flip-left"></div>
+        <div class="gallery-item"><img src="444480754_448634121089524_5185917173484269147_n.jpg" alt="Góc ngồi kỷ niệm thân quen" loading="lazy" data-aos="zoom-out"></div>
+        <div class="gallery-item"><img src="444488758_448634007756202_6302989081924096881_n.jpg" alt="Bàn ăn ấm cúng gia đình" loading="lazy" data-aos="fade-left"></div>
+        <div class="gallery-item"><img src="2.jpg" alt="Không gian một quán ăn nhỏ" loading="lazy" data-aos="zoom-in-up"></div>
+        <div class="gallery-item"><img src="432358009_1356549485053461_7477607390175533651_n.jpg" alt="Buổi cắm trại vui vẻ bên bạn bè" loading="lazy" data-aos="fade-up-left"></div>
+        <div class="gallery-item"><img src="433144599_452789943746601_8230563332010302463_n.jpg" alt="Con thuyền nhẹ trôi trên dòng sông" loading="lazy" data-aos="flip-up"></div>
+        <div class="gallery-item"><img src="433217226_328524740212165_6810297370740165090_n.jpg" alt="Đóa hoa phai màu theo thời gian" loading="lazy" data-aos="zoom-out-up"></div>
+        <div class="gallery-item"><img src="asjdksadskdasldsal.png" alt="Khoảnh khắc tĩnh lặng và bình yên" loading="lazy" data-aos="fade-right"></div>
+        <div class="gallery-item"><img src="LDskakkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.png" alt="Phút giây chia tay bạn bè đầy cảm xúc" loading="lazy" data-aos="fade-down-left"></div>
+        <div class="gallery-item"><img src="1321321z-min.png" alt="Bức ảnh trừu tượng đầy màu sắc" loading="lazy" data-aos="fade"></div>
+        <div class="gallery-item"><img src="2 photoshop-min.png" alt="Biểu tượng của hòa bình và hy vọng" loading="lazy" data-aos="flip-right"></div>
+        <div class="gallery-item"><img src="13-min.png" alt="Thành phố nhìn từ trên cao" loading="lazy" data-aos="flip-down"></div>
+        <div class="gallery-item"><img src="1.jpg" alt="Vương quốc của những giấc mơ" loading="lazy" data-aos="fade"></div>
+        <div class="gallery-item"><img src="5fb98a89-fcdd-4fef-a123-280a27fcca71-min.jpg" alt="Sài Gòn ngày giải phóng lịch sử" loading="lazy" data-aos="zoom-in"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+      <div class="contact-info">
+          <span> 
+            <i class="fas fa-envelope"></i> 
+            <a href="mailto:aimwareeeeeeee@gmail.com">aimwareeeeeeee@gmail.com</a> 
+          </span>
+          <span> 
+            <i class="fas fa-phone"></i> 
+            <a href="tel:+840335845055">+84 033 584 5055</a> 
+          </span>
+          <span> 
+            <i class="fab fa-facebook"></i> 
+            <a href="https://www.facebook.com/Izzac2z/" target="_blank" rel="noopener noreferrer">Facebook</a> 
+          </span>
+          <span> 
+            <i class="fab fa-instagram"></i> 
+            <a href="https://www.instagram.com/izzac2z/" target="_blank" rel="noopener noreferrer">Instagram</a> 
+          </span>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.8;">
+        &copy; <span id="current-year"></span> IZZAC MINH QUANG. All rights reserved.
+      </p>
+  </footer>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption-text">
+    <div class="lightbox-content">
+        <div class="lightbox-image-container">
+            <button id="lightbox-prev" class="lightbox-nav" aria-label="Ảnh trước">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Enlarged gallery image">
+            <button id="lightbox-next" class="lightbox-nav" aria-label="Ảnh kế tiếp">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <p id="lightbox-caption"></p>
+        <button id="lightbox-close-btn">Đóng</button>
+    </div>
+  </div>
+
+  <div id="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-modal-title">
+      <div class="share-modal-content">
+          <button id="close-modal-btn" title="Đóng">&times;</button>
+          <h3 id="share-modal-title">Chia sẻ liên kết</h3>
+          <p>Sao chép liên kết dưới đây để chia sẻ gallery:</p>
+          <input type="text" id="share-link-input" readonly aria-label="Liên kết chia sẻ">
+          <div class="modal-buttons">
+              <button id="copy-link-btn">
+                <i class="fas fa-copy" style="margin-right: 8px;"></i>
+                Sao chép
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <button id="back-to-top" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Enhanced particle system
+      function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 15;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 6 + 's';
+          particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+          particlesContainer.appendChild(particle);
+        }
+      }
+      createParticles();
+
+      // Dark mode toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = themeToggle.querySelector('i');
+      const themeText = themeToggle.querySelector('span');
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      if (savedTheme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+        themeText.textContent = 'Light';
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        if (newTheme === 'dark') {
+          themeIcon.className = 'fas fa-sun';
+          themeText.textContent = 'Light';
+        } else {
+          themeIcon.className = 'fas fa-moon';
+          themeText.textContent = 'Dark';
+        }
+      });
+
+      // Existing setup code
+      const mainContent = document.querySelector('main');
+      const galleryStart = document.getElementById('gallery-start');
+      const viewGalleryBtns = document.querySelectorAll('.header-button');
+      const dateElements = document.querySelectorAll('.header-date');
+      let galleryRevealed = false;
+      
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      
+      function getDaySuffix(day) { 
+        if (day > 3 && day < 21) return 'th'; 
+        switch (day % 10) { 
+          case 1: return "st"; 
+          case 2: return "nd"; 
+          case 3: return "rd"; 
+          default: return "th"; 
+        } 
+      }
+      
+      const now = new Date();
+      const formattedDate = `${monthNames[now.getMonth()]} ${now.getDate()}${getDaySuffix(now.getDate())}, ${now.getFullYear()}`;
+      
+      if (dateElements.length > 0) { 
+        dateElements.forEach(el => el.textContent = formattedDate); 
+      }
+      
+      document.getElementById('current-year').textContent = now.getFullYear();
+
+      function revealGallery() { 
+        if (!galleryRevealed) { 
+          mainContent.classList.add('revealed'); 
+          galleryRevealed = true; 
+          if (typeof AOS !== 'undefined') { 
+            AOS.init({ 
+              duration: 800, 
+              easing: 'ease-out-cubic', 
+              once: false, 
+              offset: 100,
+              delay: 100
+            }); 
+          } else { 
+            console.warn("AOS library not loaded yet for initialization."); 
+          } 
+          window.removeEventListener('scroll', revealOnScroll); 
+        } 
+      }
+      
+      function revealOnScroll() { 
+        if (window.scrollY > 50) { 
+          revealGallery(); 
+        } 
+      }
+      
+      window.addEventListener('scroll', revealOnScroll);
+      
+      if (viewGalleryBtns.length > 0 && galleryStart) { 
+        viewGalleryBtns.forEach(btn => { 
+          btn.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            revealGallery(); 
+            setTimeout(() => { 
+              galleryStart.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+            }, 50); 
+          }); 
+        }); 
+      }
+
+      // Enhanced music notification
+      const notification = document.getElementById('music-notification');
+      let soundInitialized = false;
+      let sound;
+      
+      function initializeSound() {
+        if (soundInitialized) return;
+
+        if (typeof Howl === 'undefined') {
+          console.warn("Howler library not loaded yet. Audio cannot be initialized.");
+          if (notification) {
+            notification.innerHTML = "🎵 Thư viện âm thanh chưa tải.<br>🎵 Audio library not loaded.";
+          }
+          soundInitialized = true;
+          return;
+        }
+
+        try {
+          sound = new Howl({
+            src: ["videoplayback.mp3"],
+            autoplay: true,
+            loop: true,
+            volume: 0.4,
+            html5: true,
+            onplayerror: function(id, error) {
+              console.warn("Audio autoplay was blocked. Howler will attempt to unlock on user interaction. Error code:", error);
+              sound.once('unlock', function() {
+                console.log("Audio unlocked, attempting to play again.");
+                sound.play();
+              });
+              if (notification && notification.style.display !== 'none') {
+                notification.innerHTML = "🎵 Phát nhạc tự động bị chặn. Nhấn để bật.<br>🎵 Music autoplay blocked. Click/tap to enable.";
+              }
+            },
+            onloaderror: function(id, error) {
+              console.error("AUDIO LOAD ERROR: Failed to load audio file 'videoplayback.mp3'.");
+              if (notification) {
+                notification.innerHTML = "❌ Lỗi: Không thể tải tệp âm thanh.<br>❌ Error: Could not load audio file.";
+              }
+            },
+            onload: function() {
+              console.log("Audio file loaded successfully.");
+              if (notification) {
+                notification.classList.add('hide');
+                setTimeout(() => {
+                  if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                  }
+                }, 1000);
+              }
+            }
+          });
+          soundInitialized = true;
+        } catch (error) {
+          console.error("Error initializing Howler object:", error);
+          if (notification) {
+            notification.innerHTML = "❌ Lỗi khởi tạo trình phát nhạc.<br>❌ Error initializing music player.";
+          }
+          soundInitialized = true;
+        }
+      }
+
+      if (notification) { 
+        document.body.addEventListener('click', initializeSound, { once: true }); 
+      }
+      
+      document.addEventListener('visibilitychange', () => { 
+        if (!soundInitialized || !sound || !sound.playing) return; 
+        if (document.visibilityState === 'hidden') { 
+          sound.pause(); 
+        } else { 
+          if (sound.state() === 'loaded') sound.play(); 
+        } 
+      });
+      
+      document.addEventListener('contextmenu', event => event.preventDefault());
+
+      // Enhanced Lightbox/Modal Logic
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption'); 
+      const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+      const lightboxPrevBtn = document.getElementById('lightbox-prev'); 
+      const lightboxNextBtn = document.getElementById('lightbox-next'); 
+      const galleryItems = document.querySelectorAll('.gallery .gallery-item');
+      let imagesData = []; 
+      let currentLightboxIndex = 0;
+
+      function updateImageSources() {
+        imagesData = Array.from(galleryItems).map(item => {
+          const img = item.querySelector('img');
+          return {
+            src: img ? img.src : '',
+            alt: img ? img.alt : 'Không có mô tả' 
+          };
+        }).filter(data => data.src);
+      }
+
+      function showLightbox(index) {
+        if (!galleryRevealed) return;
+        updateImageSources(); 
+
+        if (imagesData.length === 0 || index < 0 || index >= imagesData.length) {
+          console.error("Invalid image index or empty image data array:", index, imagesData);
+          return;
+        }
+
+        currentLightboxIndex = index;
+        lightboxImg.src = imagesData[currentLightboxIndex].src;
+        lightboxImg.alt = imagesData[currentLightboxIndex].alt; 
+        lightboxCaption.textContent = imagesData[currentLightboxIndex].alt; 
+
+        lightbox.classList.add('active');
+        document.body.classList.add('modal-open');
+        
+        lightboxPrevBtn.disabled = currentLightboxIndex === 0;
+        lightboxNextBtn.disabled = currentLightboxIndex === imagesData.length - 1;
+        
+        lightboxCloseBtn.focus(); 
+      }
+
+      function closeLightbox() {
+        const shareModalActive = document.getElementById('share-modal')?.classList.contains('active');
+        lightbox.classList.remove('active');
+        if (!shareModalActive) { 
+          document.body.classList.remove('modal-open');
+        }
+      }
+      
+      function showPrevImage() {
+        if (currentLightboxIndex > 0) {
+          showLightbox(currentLightboxIndex - 1);
+        }
+      }
+
+      function showNextImage() {
+        if (currentLightboxIndex < imagesData.length - 1) {
+          showLightbox(currentLightboxIndex + 1);
+        }
+      }
+
+      if (galleryItems.length > 0) {
+        galleryItems.forEach((item, index) => {
+          if (!item.dataset.listenerAdded) {
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('role', 'button');
+            item.setAttribute('aria-label', `Xem ảnh ${item.querySelector('img')?.alt || 'trong bộ sưu tập'}`);
+            item.addEventListener('click', () => showLightbox(index));
+            item.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                showLightbox(index);
+              }
+            });
+            item.dataset.listenerAdded = 'true';
+          }
+        });
+      } else {
+        console.warn("No gallery items found for lightbox.");
+      }
+
+      if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+      if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', showPrevImage); 
+      if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', showNextImage); 
+      
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) { 
+            closeLightbox();
+          }
+        });
+      }
+
+      // Enhanced back to top button
+      const backToTopBtn = document.getElementById('back-to-top');
+      
+      function throttle(func, limit) { 
+        let inThrottle; 
+        return function() { 
+          const args = arguments; 
+          const context = this; 
+          if (!inThrottle) { 
+            func.apply(context, args); 
+            inThrottle = true; 
+            setTimeout(() => inThrottle = false, limit); 
+          } 
+        } 
+      }
+      
+      const handleBackToTopScroll = throttle(() => { 
+        if (galleryRevealed && window.scrollY > 300) { 
+          backToTopBtn.classList.add('show');
+        } else { 
+          backToTopBtn.classList.remove('show');
+        } 
+      }, 100);
+      
+      if (backToTopBtn) { 
+        window.addEventListener('scroll', handleBackToTopScroll); 
+        backToTopBtn.addEventListener('click', () => { 
+          window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        }); 
+      }
+
+      // Enhanced share modal
+      const shareIcon = document.getElementById('share-icon');
+      const shareModal = document.getElementById('share-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn'); 
+      const copyLinkBtn = document.getElementById('copy-link-btn');
+      const shareLinkInput = document.getElementById('share-link-input'); 
+
+      function openShareModal() {
+        if (!galleryRevealed) return;
+        shareLinkInput.value = window.location.href; 
+        shareModal.classList.add('active');
+        document.body.classList.add('modal-open');
+        copyLinkBtn.innerHTML = '<i class="fas fa-copy" style="margin-right: 8px;"></i>Sao chép'; 
+        copyLinkBtn.disabled = false;
+        shareLinkInput.focus(); 
+        shareLinkInput.select(); 
+      }
+
+      function closeShareModal() {
+        const lightboxActive = document.getElementById('lightbox')?.classList.contains('active');
+        shareModal.classList.remove('active');
+        if (!lightboxActive) { 
+          document.body.classList.remove('modal-open');
+        }
+        copyLinkBtn.innerHTML = '<i class="fas fa-copy" style="margin-right: 8px;"></i>Sao chép';
+        copyLinkBtn.disabled = false;
+      }
+
+      if (shareIcon) shareIcon.addEventListener('click', openShareModal);
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeShareModal);
+      if (shareModal) { 
+        shareModal.addEventListener('click', (e) => { 
+          if (e.target === shareModal) { 
+            closeShareModal(); 
+          }
+        }); 
+      }
+      
+      if (copyLinkBtn && shareLinkInput) { 
+        copyLinkBtn.addEventListener('click', () => { 
+          const linkToCopy = shareLinkInput.value; 
+          shareLinkInput.select(); 
+          shareLinkInput.setSelectionRange(0, 99999); 
+
+          if (navigator.clipboard && window.isSecureContext) { 
+            navigator.clipboard.writeText(linkToCopy).then(() => { 
+              copyLinkBtn.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i>Đã sao chép!'; 
+              copyLinkBtn.disabled = true; 
+              setTimeout(() => { 
+                copyLinkBtn.innerHTML = '<i class="fas fa-copy" style="margin-right: 8px;"></i>Sao chép'; 
+                copyLinkBtn.disabled = false; 
+              }, 2000); 
+            }).catch(err => { 
+              console.error('Failed to copy link with navigator.clipboard: ', err); 
+              fallbackCopyTextToClipboard(linkToCopy); 
+            }); 
+          } else { 
+            fallbackCopyTextToClipboard(linkToCopy); 
+          } 
+        }); 
+      }
+
+      function fallbackCopyTextToClipboard(text) {
+        try {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed"; 
+          textArea.style.top = "0";
+          textArea.style.left = "0";
+          textArea.style.width = "2em";
+          textArea.style.height = "2em";
+          textArea.style.padding = "0";
+          textArea.style.border = "none";
+          textArea.style.outline = "none";
+          textArea.style.boxShadow = "none";
+          textArea.style.background = "transparent";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          const successful = document.execCommand('copy');
+          if (successful) {
+            copyLinkBtn.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i>Đã sao chép!';
+            copyLinkBtn.disabled = true;
+            setTimeout(() => { 
+              copyLinkBtn.innerHTML = '<i class="fas fa-copy" style="margin-right: 8px;"></i>Sao chép'; 
+              copyLinkBtn.disabled = false; 
+            }, 2000);
+          } else {
+            console.error('Fallback copy: document.execCommand failed');
+            alert('Không thể sao chép liên kết. Vui lòng sao chép thủ công.');
+          }
+          document.body.removeChild(textArea);
+        } catch (err) {
+          console.error('Fallback copy failed: ', err);
+          alert('Không thể sao chép liên kết. Vui lòng sao chép thủ công.');
+        }
+      }
+
+      // Enhanced keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (lightbox && lightbox.classList.contains('active')) {
+            closeLightbox();
+          } else if (shareModal && shareModal.classList.contains('active')) {
+            closeShareModal();
+          }
+        }
+        
+        if (lightbox && lightbox.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault(); 
+            showPrevImage();
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault(); 
+            showNextImage();
+          }
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
