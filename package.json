@@ -1,0 +1,16 @@
+{
+  "name": "izzac-gallery",
+  "version": "1.0.0",
+  "description": "IZZAC MINH QUANG Gallery - Personal photo gallery website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build completed - static files ready for deployment'",
+    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": ["gallery", "photography", "portfolio"],
+  "author": "IZZAC MINH QUANG",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
